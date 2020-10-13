@@ -8,15 +8,11 @@
 #
 
 library(shiny)
-library(ggplot2)
-library(plotly)
-library(jsonlite)
-library(httr)
 library(stringr)
-library(purrr)
-library(lubridate)
 library(tidyverse)
 library(waiter)
+library(lubridate)
+library(plotly)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -31,15 +27,19 @@ shinyUI(fluidPage(
             dateRangeInput(
                 "daterange",
                 "Date Range",
-                start = today(),
-                end = today(),
-                min = today() - years(5),
-                max = today() + years(5)
+                start = today(tzone = "HST"),
+                end = today(tzone = "HST"),
+                min = today(tzone = "HST") - years(5),
+                max = today(tzone = "HST") + years(5)
             ),
-            h5("hover over the graph"),
-            h5("to see data points"),
-            h5("(you might have to click on it)"),
-            tags$small("clicking the 'autoscale' button will make the plot look bad")
+            # h5("hover over the graph"),
+            # h5("to see data points"),
+            # h5("(you might have to click on it)"),
+            #tags$small("clicking the 'autoscale' button will make the plot look bad"),
+            h5("On the graph:"),
+            div("Moonrise looks like this: ",tags$img(src="img/first_quarter.png",style="width: 50px; height: 50px")),
+            div("Moonset looks like this: ",tags$img(src="img/first_quarter_set.png",style="width: 50px; height: 25px")),
+            div("Moon phases won't be perfect, or even particularly accurate, ok?")
         ),
         
         mainPanel(
